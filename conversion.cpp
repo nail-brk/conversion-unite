@@ -1,3 +1,9 @@
-ofstream fichier("historique.txt", ios::app);
-fichier << "Conversion choisie : résultat = " << resultat << endl;
-fichier.close();
+cout << "Entrez une valeur positive : ";
+cin >> valeur;
+
+if (cin.fail() || valeur < 0) {
+    cin.clear();  
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
+    cout << " Erreur : valeur invalide !" << endl;
+    break;
+}
