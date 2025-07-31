@@ -1,5 +1,10 @@
-double celsiusVersKelvin(double c)      { return c + 273.15; }
-double metresVersPieds(double m)        { return m * 3.28084; }
-double euroVersDinar(double e)          { return e * 149.14; }
-double euroVersDollar(double e)         { return e * 1.14; }
-double kmhVersMs(double kmh)            { return kmh / 3.6; }
+void afficherMenu() {
+    cout << "===== MENU DE CONVERSION =====" << endl;
+    cout << "1. Celsius -> Kelvin" << endl;
+    cout << "2. Mètres -> Pieds" << endl;
+    cout << "3. Euro -> Dinar algérien" << endl;
+    cout << "4. Euro -> Dollar américain" << endl;
+    cout << "5. km/h -> m/s" << endl;
+    cout << "==============================" << endl;
+    cout << "Faites votre choix : ";
+}
