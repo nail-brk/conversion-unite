@@ -1,68 +1,82 @@
-#include <iostream>
-using namespace std;
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>🔁 Convertisseur</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #eef2f3;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .container {
+        text-align: center;
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+      select,
+      input,
+      button {
+        margin: 10px;
+        padding: 10px;
+        font-size: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🔁 Convertisseur</h1>
+      <select id="conversion">
+        <option value="1">🌡️ Celsius → Kelvin</option>
+        <option value="2">📏 Mètres → Pieds</option>
+        <option value="3">💶 Euros → Dinar algérien</option>
+        <option value="4">💶 Euros → Dollar US</option>
+        <option value="5">🚗 km/h → m/s</option>
+      </select>
+      <input type="number" id="valeur" placeholder="Valeur" />
+      <button onclick="convertir()">Convertir</button>
+      <p id="resultat"></p>
+    </div>
 
-void afficherMenu() {
-    cout << "\n=============================" << endl;
-    cout << "     🔁 CONVERTISSEUR UNIVERSEL" << endl;
-    cout << "=============================" << endl;
-    cout << "1. 🌡️ Celsius -> Kelvin" << endl;
-    cout << "2. 📏 Mètres -> Pieds" << endl;
-    cout << "3. 💶 Euro -> Dinar algérien" << endl;
-    cout << "4. 💶 Euro -> Dollar américain" << endl;
-    cout << "5. 🚗 km/h -> m/s" << endl;
-    cout << "-----------------------------" << endl;
-    cout << "Choix : ";
-}
+    <script>
+      function convertir() {
+        const choix = document.getElementById("conversion").value;
+        const valeur = parseFloat(document.getElementById("valeur").value);
+        let res = 0;
+        let unite = "";
 
-double celsiusVersKelvin(double c) { return c + 273.15; }
-double metresVersPieds(double m) { return m * 3.28084; }
-double euroVersDinar(double e) { return e * 149.14; }
-double euroVersDollar(double e) { return e * 1.14; }
-double kmhVersMs(double kmh) { return kmh / 3.6; }
+        switch (choix) {
+          case "1":
+            res = valeur + 273.15;
+            unite = "K";
+            break;
+          case "2":
+            res = valeur * 3.28084;
+            unite = "pieds";
+            break;
+          case "3":
+            res = valeur * 149.14;
+            unite = "DZD";
+            break;
+          case "4":
+            res = valeur * 1.14;
+            unite = "USD";
+            break;
+          case "5":
+            res = valeur / 3.6;
+            unite = "m/s";
+            break;
+        }
 
-void effectuerConversion(int choix) {
-    double valeur, resultat;
-
-    switch (choix) {
-        case 1:
-            cout << "Entrez la température en °C : ";
-            cin >> valeur;
-            resultat = celsiusVersKelvin(valeur);
-            cout << "🌡️ Résultat : " << resultat << " K" << endl;
-            break;
-        case 2:
-            cout << "Entrez la distance en mètres : ";
-            cin >> valeur;
-            resultat = metresVersPieds(valeur);
-            cout << "📏 Résultat : " << resultat << " pieds" << endl;
-            break;
-        case 3:
-            cout << "Entrez le montant en euros : ";
-            cin >> valeur;
-            resultat = euroVersDinar(valeur);
-            cout << "💰 Résultat : " << resultat << " DZD" << endl;
-            break;
-        case 4:
-            cout << "Entrez le montant en euros : ";
-            cin >> valeur;
-            resultat = euroVersDollar(valeur);
-            cout << "💰 Résultat : " << resultat << " USD" << endl;
-            break;
-        case 5:
-            cout << "Entrez la vitesse en km/h : ";
-            cin >> valeur;
-            resultat = kmhVersMs(valeur);
-            cout << "🚗 Résultat : " << resultat << " m/s" << endl;
-            break;
-        default:
-            cout << "❌ Choix invalide !" << endl;
-    }
-}
-
-int main() {
-    int choix;
-    afficherMenu();
-    cin >> choix;
-    effectuerConversion(choix);
-    return 0;
-}
+        document.getElementById(
+          "resultat"
+        ).innerText = `✅ Résultat : ${res.toFixed(2)} ${unite}`;
+      }
+    </script>
+  </body>
+</html>
